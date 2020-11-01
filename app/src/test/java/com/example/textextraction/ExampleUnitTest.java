@@ -1,4 +1,4 @@
-package com.example.babelfish;
+package com.example.textextraction;
 
 import org.junit.Test;
 
