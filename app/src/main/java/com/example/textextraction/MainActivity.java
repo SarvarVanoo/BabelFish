@@ -4,14 +4,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.Manifest;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -23,17 +20,14 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.ml.vision.FirebaseVision;
 import com.google.firebase.ml.vision.common.FirebaseVisionImage;
-import com.google.firebase.ml.vision.text.FirebaseVisionCloudTextRecognizerOptions;
 import com.google.firebase.ml.vision.text.FirebaseVisionText;
 import com.google.firebase.ml.vision.text.FirebaseVisionTextRecognizer;
 
-import java.util.Arrays;
-
 public class MainActivity extends AppCompatActivity {
 
-    Button camera_button,done_button, translate_button;
+    Button cameraButton, doneButton, translateButton;
     ImageView image;
-    TextView extractedtext,beforetextview;
+    TextView extractedText, beforeTextView;
     public String text;
     static final int REQUEST_IMAGE_CAPTURE = 1;
 
@@ -46,33 +40,33 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        camera_button=findViewById(R.id.btn_camera);
-        done_button=findViewById(R.id.btn_done);
-        translate_button=findViewById(R.id.btn_translate);
+        cameraButton =findViewById(R.id.btn_camera);
+        doneButton =findViewById(R.id.btn_done);
+        translateButton =findViewById(R.id.btn_translate);
         image=findViewById(R.id.image_view);
-        extractedtext=findViewById(R.id.aftertextview);
-        beforetextview=findViewById(R.id.beforetextview);
+        extractedText =findViewById(R.id.aftertextview);
+        beforeTextView =findViewById(R.id.beforetextview);
 
 
-        camera_button.setOnClickListener(new View.OnClickListener() {
+        cameraButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
             {
                 dispatchTakePictureIntent();
-                //done_button.setVisibility(View.VISIBLE);
+                //doneButton.setVisibility(View.VISIBLE);
             }
         });
 
-        done_button.setOnClickListener(new View.OnClickListener() {
+        doneButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
             {
-                camera_button.setVisibility(View.VISIBLE);
-                done_button.setVisibility(View.GONE);
-                translate_button.setVisibility(View.GONE);
-                extractedtext.setText("Extracted text will be shown here!");
+                cameraButton.setVisibility(View.VISIBLE);
+                doneButton.setVisibility(View.GONE);
+                translateButton.setVisibility(View.GONE);
+                extractedText.setText("Extracted text will be shown here!");
                 image.setVisibility(View.GONE);
-                beforetextview.setVisibility(View.VISIBLE);
+                beforeTextView.setVisibility(View.VISIBLE);
 
             }
         });
@@ -98,11 +92,11 @@ public class MainActivity extends AppCompatActivity {
             Bitmap imageBitmap = (Bitmap) extras.get("data");
             //set image in imageview
             image.setImageBitmap(imageBitmap);
-            camera_button.setVisibility(View.GONE);
-            done_button.setVisibility(View.VISIBLE);
-            translate_button.setVisibility(View.VISIBLE);
+            cameraButton.setVisibility(View.GONE);
+            doneButton.setVisibility(View.VISIBLE);
+            translateButton.setVisibility(View.VISIBLE);
             image.setVisibility(View.VISIBLE);
-            beforetextview.setVisibility(View.GONE);
+            beforeTextView.setVisibility(View.GONE);
 
 
             //Create firebasevisionimage object from a bitmap object
@@ -127,8 +121,8 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onSuccess(FirebaseVisionText firebaseVisionText) {
                     String str = firebaseVisionText.getText();
-                    extractedtext.setText(str);
-                    //extractedtext.setMovementMethod(new ScrollingMovementMethod());
+                    extractedText.setText(str);
+                    //extractedText.setMovementMethod(new ScrollingMovementMethod());
                 }
             });
 
@@ -139,11 +133,11 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
 
-            translate_button.setOnClickListener(new View.OnClickListener() {
+            translateButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v)
                 {
-                    text=extractedtext.getText().toString();
+                    text= extractedText.getText().toString();
                     Intent intent = new Intent(MainActivity.this, Translation.class);
                     intent.putExtra("data",text);
                     startActivity(intent);
