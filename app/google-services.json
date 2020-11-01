@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "132206359357",
+    "firebase_url": "https://babel-fish-2087d.firebaseio.com",
+    "project_id": "babel-fish-2087d",
+    "storage_bucket": "babel-fish-2087d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:132206359357:android:5d0139f946fdda7549cb54",
+        "android_client_info": {
+          "package_name": "com.example.textextraction"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "132206359357-mrnoe5cps4b4vej5g82sgsrp9gan45n6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.textextraction",
+            "certificate_hash": "e09582d810ede122cdf396d7173456468e91440c"
+          }
+        },
+        {
+          "client_id": "132206359357-7bfpsamta79qcuu7fobr46evhfc87ag2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCsNVOc3_va92fTTyvYWWUHsrR9R-oT99g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "132206359357-7bfpsamta79qcuu7fobr46evhfc87ag2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
