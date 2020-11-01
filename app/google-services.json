@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:132206359357:android:5d0139f946fdda7549cb54",
         "android_client_info": {
-          "package_name": "com.example.textextraction"
+          "package_name": "com.example.babelfish"
         }
       },
       "oauth_client": [
@@ -18,7 +18,7 @@
           "client_id": "132206359357-mrnoe5cps4b4vej5g82sgsrp9gan45n6.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.textextraction",
+            "package_name": "com.example.babelfish",
             "certificate_hash": "e09582d810ede122cdf396d7173456468e91440c"
           }
         },

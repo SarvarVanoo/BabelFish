@@ -1,4 +1,4 @@
-package com.example.textextraction;
+package com.example.babelfish;
 
 import android.content.Context;
 
@@ -22,6 +22,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
 
-        assertEquals("com.example.textextraction", appContext.getPackageName());
+        assertEquals("com.example.babelfish", appContext.getPackageName());
     }
 }

@@ -1,4 +1,4 @@
-package com.example.textextraction;
+package com.example.babelfish;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
