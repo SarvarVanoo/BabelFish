@@ -28,7 +28,6 @@ public class MainActivity extends AppCompatActivity {
     Button cameraButton, doneButton, translateButton;
     ImageView image;
     TextView extractedText, beforeTextView;
-    public String text;
     static final int REQUEST_IMAGE_CAPTURE = 1;
 
 
@@ -40,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //Initializing all the elements
         cameraButton =findViewById(R.id.btn_camera);
         doneButton =findViewById(R.id.btn_done);
         translateButton =findViewById(R.id.btn_translate);
@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         extractedText =findViewById(R.id.aftertextview);
         beforeTextView =findViewById(R.id.beforetextview);
 
-
+        //Adding OnClickListeners for Buttons
         cameraButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
@@ -73,7 +73,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-
 
 
     private void dispatchTakePictureIntent() {
@@ -117,11 +116,17 @@ public class MainActivity extends AppCompatActivity {
 
             //process image
             Task<FirebaseVisionText> task=firebaseVisionTextRecognizer.processImage(firebaseVisionImage);
-            task.addOnSuccessListener(new OnSuccessListener<FirebaseVisionText>() {
+            task.addOnSuccessListener( new OnSuccessListener<FirebaseVisionText>() {
                 @Override
                 public void onSuccess(FirebaseVisionText firebaseVisionText) {
-                    String str = firebaseVisionText.getText();
-                    extractedText.setText(str);
+                    String firebaseExtractedText = firebaseVisionText.getText();
+                    if(firebaseExtractedText.isEmpty())
+                    {
+                        extractedText.setText("Hey, Seems we were not able to extract the Text from the Image you provided! :( Could you try clicking the Picture again?");
+                    }
+                    else {
+                        extractedText.setText(firebaseExtractedText);
+                    }
                     //extractedText.setMovementMethod(new ScrollingMovementMethod());
                 }
             });
@@ -129,7 +134,9 @@ public class MainActivity extends AppCompatActivity {
             task.addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_LONG).show();
+                    extractedText.setText("Hey, Seems we were not able to extract the Text from the Image you provided! :( Could you try again please?");
+                    String errorMsg = "Failure while extracting Text from Image! Error Message: "+ e.getMessage();
+                    Toast.makeText(getApplicationContext(),errorMsg,Toast.LENGTH_LONG).show();
                 }
             });
 
@@ -137,9 +144,9 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v)
                 {
-                    text= extractedText.getText().toString();
+                    String textToTranslate = extractedText.getText().toString();
                     Intent intent = new Intent(MainActivity.this, Translation.class);
-                    intent.putExtra("data",text);
+                    intent.putExtra("textToTranslate",textToTranslate);
                     startActivity(intent);
                 }
             });
