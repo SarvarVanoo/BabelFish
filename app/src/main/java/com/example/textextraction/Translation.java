@@ -4,8 +4,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -23,12 +27,16 @@ import com.google.firebase.ml.naturallanguage.translate.FirebaseTranslateLanguag
 import com.google.firebase.ml.naturallanguage.translate.FirebaseTranslator;
 import com.google.firebase.ml.naturallanguage.translate.FirebaseTranslatorOptions;
 
+import java.util.Locale;
+
 public class Translation extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     protected EditText sourceText, translatedText;
     protected Spinner sourceSpinner, targetSpinner;
-    protected Button dismiss, translate;
+    protected Button dismiss, translate, copy1, copy2, speech1, speech2;
     protected String textValue;
+    protected TextToSpeech textToSpeech1, textToSpeech2;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,12 +85,70 @@ public class Translation extends AppCompatActivity implements AdapterView.OnItem
             }
         });
 
+        //copy1 button
+        copy1 = findViewById(R.id.copy1);
+        copy1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+                ClipData clip = ClipData.newPlainText("EditText", sourceText.getText().toString());
+                clipboard.setPrimaryClip(clip);
+
+                Toast.makeText(Translation.this, "Text Copied", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        //copy2 button
+        copy2 = findViewById(R.id.copy2);
+        copy2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+                ClipData clip = ClipData.newPlainText("EditText", translatedText.getText().toString());
+                clipboard.setPrimaryClip(clip);
+            }
+        });
+
+
+        //Text to Speech
+        textToSpeech1= new TextToSpeech(this, new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if(status==TextToSpeech.SUCCESS)
+                {
+                    textToSpeech1.setLanguage(Locale.ENGLISH);
+                }
+            }
+        });
+
+
+        //speech1 button
+        speech1 = findViewById(R.id.speech1);
+        speech1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+
+        //speech2 button
+        speech2 = findViewById(R.id.speech2);
+        speech2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+
+
     }
+
+
 
     private void identifyLanguage()
     {
-
-
         FirebaseLanguageIdentification languageIdentifier =
                 FirebaseNaturalLanguage.getInstance().getLanguageIdentification();
         languageIdentifier.identifyLanguage(textValue)
