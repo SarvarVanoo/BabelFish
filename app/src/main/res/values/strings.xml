@@ -1,23 +1,22 @@
 <resources>
     <string name="app_name">Babel Fish</string>
 
-    <string-array name="sourcetextarray">
-        <item>Select Language</item>
+    <string-array name="supportedSourceLanguages">
         <item>English</item>
+        <item>Hindi</item>
+
 
     </string-array>
 
-    <string-array name="targettextarray">
-        <item>Select Language</item>
+    <string-array name="supportedTargetLanguages">
+        <item>Hindi</item>
+        <item>Marathi</item>
+        <item>Gujarati</item>
         <item>French</item>
         <item>German</item>
         <item>Russian</item>
         <item>Spanish</item>
         <item>Arabic</item>
-        <item>Hindi</item>
-        <item>Marathi</item>
-        <item>Gujarati</item>
-        <item>Russia</item>
         <item>Chinese</item>
     </string-array>
 </resources>
