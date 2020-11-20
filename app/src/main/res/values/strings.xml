@@ -4,6 +4,9 @@
     <string-array name="supportedSourceLanguages">
         <item>English</item>
         <item>Hindi</item>
+        <item>Marathi</item>
+        <item>Gujarati</item>
+        <item>French</item>
 
 
     </string-array>
