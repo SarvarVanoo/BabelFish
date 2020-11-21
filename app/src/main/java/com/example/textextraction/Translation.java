@@ -53,6 +53,7 @@ public class Translation extends AppCompatActivity  {
     protected static Map<String,FirebaseTranslator> translatorOptions = new HashMap<>();
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -160,7 +161,6 @@ public class Translation extends AppCompatActivity  {
                 ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
                 ClipData clip = ClipData.newPlainText("EditText", sourceText.getText().toString());
                 clipboard.setPrimaryClip(clip);
-
                 Toast.makeText(Translation.this, "Text Copied", Toast.LENGTH_SHORT).show();
             }
         });
@@ -173,6 +173,7 @@ public class Translation extends AppCompatActivity  {
                 ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
                 ClipData clip = ClipData.newPlainText("EditText", translatedText.getText().toString());
                 clipboard.setPrimaryClip(clip);
+                Toast.makeText(Translation.this, "Text Copied", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -194,6 +195,7 @@ public class Translation extends AppCompatActivity  {
         speech1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
 
             }
         });
@@ -306,7 +308,6 @@ public class Translation extends AppCompatActivity  {
 
     private FirebaseTranslator initializeTranslator(final int sourceLangFirebaseCode, final int targetLangFirebaseCode)
     {
-
         //setup Translator options
         FirebaseTranslatorOptions options = new FirebaseTranslatorOptions.Builder()
                 .setSourceLanguage(sourceLangFirebaseCode)
@@ -319,7 +320,7 @@ public class Translation extends AppCompatActivity  {
 
         //setting download conditions
         FirebaseModelDownloadConditions conditions = new FirebaseModelDownloadConditions.Builder()
-                .requireWifi()
+               // .requireWifi()
                 .build();
 
         //downloading module if needed

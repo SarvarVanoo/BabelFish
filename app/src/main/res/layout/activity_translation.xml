@@ -1,31 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+
     tools:context=".Translation">
 
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
 <LinearLayout
     android:layout_height="wrap_content"
     android:layout_width="match_parent"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:layout_marginTop="115dp"
+    android:gravity="center">
     <EditText
         android:id="@+id/sourcetext"
         android:layout_height="wrap_content"
-        android:layout_width="325dp"
-        android:textStyle="bold"
-        android:padding="4dp"
+        android:layout_width="285dp"
+        android:padding="2dp"
         android:background="@drawable/textviewborder"
-        android:hint="Source Text">
+        android:hint="Source Text"
+        android:layout_gravity="center">
 
     </EditText>
     <Button
         android:id="@+id/copy1"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
         android:foreground="@drawable/ic_copy"
         android:layout_marginLeft="5dp"
         >
@@ -33,32 +40,57 @@
 
     <Button
         android:id="@+id/speech1"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
         android:foreground="@drawable/ic_speech"
         android:layout_marginLeft="5dp"
         >
     </Button>
     </LinearLayout>
+
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:layout_marginTop="50dp"
+    android:gravity="center"
     >
 
     <TextView
         android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
+        android:layout_width="70dp"
         android:text="From : "
-        android:textSize="20dp">
+        android:textSize="17dp">
     </TextView>
 
     <Spinner
         android:id="@+id/sourcespinner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        >
     </Spinner>
+
+</LinearLayout>
+
+
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginTop="50dp"
+        android:gravity="center">
+
+        <Button
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:enabled="false"
+            android:foreground="@drawable/ic_translate"
+            android:background="@android:color/white"
+            >
+        </Button>
+
+
 
 </LinearLayout>
 
@@ -66,20 +98,24 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="50dp"
+        android:gravity="center"
         >
 
         <TextView
             android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
+            android:layout_width="70dp"
             android:text="To : "
-            android:textSize="20dp">
+            android:textSize="17dp"
+           android:textAlignment="center">
         </TextView>
 
         <Spinner
             android:id="@+id/targetspinner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+           >
         </Spinner>
 
     </LinearLayout>
@@ -87,30 +123,34 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginTop="50dp"
+        android:gravity="center"
+       >
     <EditText
         android:id="@+id/translatedtext"
         android:layout_height="wrap_content"
-        android:layout_width="325dp"
-        android:textStyle="bold"
-        android:padding="4dp"
+        android:layout_width="285dp"
+        android:padding="2dp"
         android:background="@drawable/textviewborder"
-        android:hint="Translated Text will be shown here">
+        android:hint="Translated Text will be shown here"
+        >
     </EditText>
 
         <Button
             android:id="@+id/copy2"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:foreground="@drawable/ic_copy"
-            android:background="@android:color/white"
+            android:layout_marginLeft="5dp"
+
             >
         </Button>
 
         <Button
             android:id="@+id/speech2"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:foreground="@drawable/ic_speech"
             android:layout_marginLeft="5dp"
             >
@@ -123,7 +163,8 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center"
-        android:layout_gravity="center">
+        android:layout_gravity="center"
+        android:layout_marginTop="100dp">
 
         <Button
             android:id="@+id/dismiss"
@@ -144,5 +185,6 @@
 
 </LinearLayout>
 
-
 </LinearLayout>
+
+</ScrollView>
