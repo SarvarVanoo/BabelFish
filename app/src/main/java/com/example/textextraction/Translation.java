@@ -4,6 +4,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
+import android.content.Intent;
+import android.speech.tts.TextToSpeech;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
@@ -23,12 +29,13 @@ import com.google.firebase.ml.naturallanguage.languageid.FirebaseLanguageIdentif
 import com.google.firebase.ml.naturallanguage.translate.FirebaseTranslateLanguage;
 import com.google.firebase.ml.naturallanguage.translate.FirebaseTranslator;
 import com.google.firebase.ml.naturallanguage.translate.FirebaseTranslatorOptions;
-
+import java.util.Locale;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+
 
 public class Translation extends AppCompatActivity  {
 
@@ -36,13 +43,15 @@ public class Translation extends AppCompatActivity  {
     protected EditText sourceText, translatedText;
     protected Spinner sourceLanguageSpinner, targetLanguageSpinner;
     protected String currentSourceLangShortCode, currentTargetLangShortCode;
-    protected Button dismissButton, translateButton;
+    protected Button dismissButton, translateButton,copy1, copy2, speech1, speech2;
+    protected TextToSpeech textToSpeech1, textToSpeech2;  
     protected List<String> supportedSourceLanguages;
     protected List<String> supportedTargetLanguages;
     final protected Locale defaultLocale = Locale.US;
     final String defaultSourceLanguage = "English";
     final String defaultTargetLanguage = "Hindi";
     protected static Map<String,FirebaseTranslator> translatorOptions = new HashMap<>();
+
 
 
     @Override
@@ -144,6 +153,65 @@ public class Translation extends AppCompatActivity  {
             }
         });
 
+        //copy1 button
+        copy1 = findViewById(R.id.copy1);
+        copy1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+                ClipData clip = ClipData.newPlainText("EditText", sourceText.getText().toString());
+                clipboard.setPrimaryClip(clip);
+                Toast.makeText(Translation.this, "Text Copied", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        //copy2 button
+        copy2 = findViewById(R.id.copy2);
+        copy2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+                ClipData clip = ClipData.newPlainText("EditText", translatedText.getText().toString());
+                clipboard.setPrimaryClip(clip);
+                Toast.makeText(Translation.this, "Text Copied", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+        //Text to Speech
+        textToSpeech1= new TextToSpeech(this, new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if(status==TextToSpeech.SUCCESS)
+                {
+                    textToSpeech1.setLanguage(Locale.ENGLISH);
+                }
+            }
+        });
+
+
+        //speech1 button
+        speech1 = findViewById(R.id.speech1);
+        speech1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+            }
+        });
+
+
+        //speech2 button
+        speech2 = findViewById(R.id.speech2);
+        speech2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+
+
     }
 
     private void identifySourceLanguage()
@@ -240,7 +308,6 @@ public class Translation extends AppCompatActivity  {
 
     private FirebaseTranslator initializeTranslator(final int sourceLangFirebaseCode, final int targetLangFirebaseCode)
     {
-
         //setup Translator options
         FirebaseTranslatorOptions options = new FirebaseTranslatorOptions.Builder()
                 .setSourceLanguage(sourceLangFirebaseCode)
@@ -253,7 +320,7 @@ public class Translation extends AppCompatActivity  {
 
         //setting download conditions
         FirebaseModelDownloadConditions conditions = new FirebaseModelDownloadConditions.Builder()
-                .requireWifi()
+               // .requireWifi()
                 .build();
 
         //downloading module if needed
