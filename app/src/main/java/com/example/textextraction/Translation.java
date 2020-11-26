@@ -8,7 +8,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
-import android.content.Intent;
 import android.speech.tts.TextToSpeech;
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -33,7 +32,6 @@ import java.util.Locale;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 
 
@@ -43,8 +41,8 @@ public class Translation extends AppCompatActivity  {
     protected EditText sourceText, translatedText;
     protected Spinner sourceLanguageSpinner, targetLanguageSpinner;
     protected String currentSourceLangShortCode, currentTargetLangShortCode;
-    protected Button dismissButton, translateButton,copy1, copy2, speech1, speech2;
-    protected TextToSpeech textToSpeech1, textToSpeech2;  
+    protected Button dismissButton, translateButton,copy1, copy2, speechButton1, speechButton2;
+    protected TextToSpeech textToSpeech;
     protected List<String> supportedSourceLanguages;
     protected List<String> supportedTargetLanguages;
     final protected Locale defaultLocale = Locale.US;
@@ -161,7 +159,7 @@ public class Translation extends AppCompatActivity  {
                 ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
                 ClipData clip = ClipData.newPlainText("EditText", sourceText.getText().toString());
                 clipboard.setPrimaryClip(clip);
-                Toast.makeText(Translation.this, "Text Copied", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Translation.this, "Source Text Copied", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -173,45 +171,75 @@ public class Translation extends AppCompatActivity  {
                 ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
                 ClipData clip = ClipData.newPlainText("EditText", translatedText.getText().toString());
                 clipboard.setPrimaryClip(clip);
-                Toast.makeText(Translation.this, "Text Copied", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Translation.this, "Translated Text Copied", Toast.LENGTH_SHORT).show();
             }
         });
 
 
         //Text to Speech
-        textToSpeech1= new TextToSpeech(this, new TextToSpeech.OnInitListener() {
+        textToSpeech = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
             @Override
             public void onInit(int status) {
-                if(status==TextToSpeech.SUCCESS)
-                {
-                    textToSpeech1.setLanguage(Locale.ENGLISH);
+                if (status == TextToSpeech.SUCCESS) {
+                    setLanguageAndSpeak(textToSpeech, sourceText, defaultLocale.getLanguage());
+                } else {
+                    Log.e("error", "Failed to Initialize Text To Speech Object!");
                 }
             }
+
         });
 
-
-        //speech1 button
-        speech1 = findViewById(R.id.speech1);
-        speech1.setOnClickListener(new View.OnClickListener() {
+        //speechButton1 button
+        speechButton1 = findViewById(R.id.speech1);
+        speechButton1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                setLanguageAndSpeak(textToSpeech, sourceText, currentSourceLangShortCode);
 
             }
         });
 
 
-        //speech2 button
-        speech2 = findViewById(R.id.speech2);
-        speech2.setOnClickListener(new View.OnClickListener() {
+        //speechButton2 button
+        speechButton2 = findViewById(R.id.speech2);
+        speechButton2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                setLanguageAndSpeak(textToSpeech, translatedText, currentTargetLangShortCode);
             }
         });
 
+    }
+
+    private void setLanguageAndSpeak(TextToSpeech textToSpeech, EditText textToSpeak, String languageShortCode)
+    {
+        Locale currentLocale = new Locale(languageShortCode);
+        int result = textToSpeech.setLanguage(currentLocale);
+        if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+            String msg = "Cannot Speak in "+ currentLocale.getDisplayLanguage() +" Language yet!";
+            Log.e(TAG,msg );
+            Toast.makeText(Translation.this, msg, Toast.LENGTH_SHORT).show();
+            textToSpeech.setLanguage(defaultLocale);
+        }
+        String text = textToSpeak.getText().toString();
+        speakText(textToSpeech, text);
+    }
+
+    private void speakText(TextToSpeech textToSpeech, String text) {
+        if ("".equals(text)) {
+            text = "Please enter some text to speak.";
+        }
+            textToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH,null);
+    }
 
 
+    @Override
+    public void onDestroy() {
+        if (textToSpeech != null) {
+            textToSpeech.stop();
+            textToSpeech.shutdown();
+        }
+        super.onDestroy();
     }
 
     private void identifySourceLanguage()
@@ -239,7 +267,7 @@ public class Translation extends AppCompatActivity  {
 
                                     }
                                     else{
-                                        String msg = "Translation of Language: "+ identifiedLanguageName + "Not supported yet!";
+                                        String msg = "Translation of Language: "+ identifiedLanguageName + " Not supported yet!";
                                         Log.i(TAG,msg);
                                         Toast.makeText(getApplicationContext(),msg, Toast.LENGTH_LONG).show();
                                         setSpinnerSelection(sourceLanguageSpinner,defaultSourceLanguage);
