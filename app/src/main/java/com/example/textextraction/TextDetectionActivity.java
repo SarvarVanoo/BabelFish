@@ -23,7 +23,7 @@ import com.google.firebase.ml.vision.common.FirebaseVisionImage;
 import com.google.firebase.ml.vision.text.FirebaseVisionText;
 import com.google.firebase.ml.vision.text.FirebaseVisionTextRecognizer;
 
-public class MainActivity extends AppCompatActivity {
+public class TextDetectionActivity extends AppCompatActivity {
 
     Button cameraButton, doneButton, translateButton;
     ImageView image;
@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_text_detection);
 
         //Initializing all the elements
         cameraButton =findViewById(R.id.btn_camera);
@@ -61,12 +61,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
-                cameraButton.setVisibility(View.VISIBLE);
-                doneButton.setVisibility(View.GONE);
-                translateButton.setVisibility(View.GONE);
-                extractedText.setText("Extracted text will be shown here!");
-                image.setVisibility(View.GONE);
-                beforeTextView.setVisibility(View.VISIBLE);
+//                cameraButton.setVisibility(View.VISIBLE);
+//                doneButton.setVisibility(View.GONE);
+//                translateButton.setVisibility(View.GONE);
+//                extractedText.setText("Extracted text will be shown here!");
+//                image.setVisibility(View.GONE);
+//                beforeTextView.setVisibility(View.VISIBLE);
+                Intent intent = new Intent(TextDetectionActivity.this, DashboardActivity.class);
+                startActivity(intent);
+                TextDetectionActivity.this.finish();
 
             }
         });
@@ -145,7 +148,7 @@ public class MainActivity extends AppCompatActivity {
                 public void onClick(View v)
                 {
                     String textToTranslate = extractedText.getText().toString();
-                    Intent intent = new Intent(MainActivity.this, Translation.class);
+                    Intent intent = new Intent(TextDetectionActivity.this, TextTranslationActivity.class);
                     intent.putExtra("textToTranslate",textToTranslate);
                     startActivity(intent);
                 }
