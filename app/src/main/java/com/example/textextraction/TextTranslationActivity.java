@@ -61,7 +61,14 @@ public class TextTranslationActivity extends AppCompatActivity  {
         Resources resources = getResources();
         String textToTranslate = getIntent().getStringExtra("textToTranslate");
         sourceText = findViewById(R.id.sourcetext);
-        sourceText.setText(textToTranslate);
+        if ( textToTranslate != null )
+        {
+            sourceText.setText(textToTranslate);
+        }
+        else{
+            sourceText.setText("Enter Text To Translate");
+        }
+
 
         supportedSourceLanguages = Arrays.asList(resources.getStringArray(R.array.supportedSourceLanguages));
         supportedTargetLanguages = Arrays.asList(resources.getStringArray(R.array.supportedTargetLanguages));

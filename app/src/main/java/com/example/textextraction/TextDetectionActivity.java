@@ -61,12 +61,15 @@ public class TextDetectionActivity extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
-                cameraButton.setVisibility(View.VISIBLE);
-                doneButton.setVisibility(View.GONE);
-                translateButton.setVisibility(View.GONE);
-                extractedText.setText("Extracted text will be shown here!");
-                image.setVisibility(View.GONE);
-                beforeTextView.setVisibility(View.VISIBLE);
+//                cameraButton.setVisibility(View.VISIBLE);
+//                doneButton.setVisibility(View.GONE);
+//                translateButton.setVisibility(View.GONE);
+//                extractedText.setText("Extracted text will be shown here!");
+//                image.setVisibility(View.GONE);
+//                beforeTextView.setVisibility(View.VISIBLE);
+                Intent intent = new Intent(TextDetectionActivity.this, DashboardActivity.class);
+                startActivity(intent);
+                TextDetectionActivity.this.finish();
 
             }
         });
