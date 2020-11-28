@@ -35,7 +35,7 @@ import java.util.List;
 import java.util.Map;
 
 
-public class Translation extends AppCompatActivity  {
+public class TextTranslationActivity extends AppCompatActivity  {
 
     private String TAG = "TranslationClass";
     protected EditText sourceText, translatedText;
@@ -55,7 +55,7 @@ public class Translation extends AppCompatActivity  {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_translation);
+        setContentView(R.layout.activity_text_translation);
 
         //intilialize all the elements
         Resources resources = getResources();
@@ -136,7 +136,7 @@ public class Translation extends AppCompatActivity  {
         dismissButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Translation.this.finish();
+                TextTranslationActivity.this.finish();
             }
         });
 
@@ -159,7 +159,7 @@ public class Translation extends AppCompatActivity  {
                 ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
                 ClipData clip = ClipData.newPlainText("EditText", sourceText.getText().toString());
                 clipboard.setPrimaryClip(clip);
-                Toast.makeText(Translation.this, "Source Text Copied", Toast.LENGTH_SHORT).show();
+                Toast.makeText(TextTranslationActivity.this, "Source Text Copied", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -171,7 +171,7 @@ public class Translation extends AppCompatActivity  {
                 ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
                 ClipData clip = ClipData.newPlainText("EditText", translatedText.getText().toString());
                 clipboard.setPrimaryClip(clip);
-                Toast.makeText(Translation.this, "Translated Text Copied", Toast.LENGTH_SHORT).show();
+                Toast.makeText(TextTranslationActivity.this, "Translated Text Copied", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -218,7 +218,7 @@ public class Translation extends AppCompatActivity  {
         if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
             String msg = "Cannot Speak in "+ currentLocale.getDisplayLanguage() +" Language yet!";
             Log.e(TAG,msg );
-            Toast.makeText(Translation.this, msg, Toast.LENGTH_SHORT).show();
+            Toast.makeText(TextTranslationActivity.this, msg, Toast.LENGTH_SHORT).show();
             textToSpeech.setLanguage(defaultLocale);
         }
         String text = textToSpeak.getText().toString();
@@ -254,7 +254,7 @@ public class Translation extends AppCompatActivity  {
                             public void onSuccess(@Nullable String languageShortCode) {
                                 if (!languageShortCode.equals("und")) {
 //                                    int langCode = getFirebaseLanguageCode(languageShortCode);
-//                                    translateText(langCode, Translation.this.textToTranslate);
+//                                    translateText(langCode, TextTranslationActivity.this.textToTranslate);
                                     String identifiedLanguageName = getLanguageNameFromShortCode(languageShortCode);
                                     Log.i(TAG,"Identified Language code: "+ languageShortCode);
                                     Log.i(TAG,"Identified Language Name: "+ identifiedLanguageName);
@@ -267,7 +267,7 @@ public class Translation extends AppCompatActivity  {
 
                                     }
                                     else{
-                                        String msg = "Translation of Language: "+ identifiedLanguageName + " Not supported yet!";
+                                        String msg = "TextTranslationActivity of Language: "+ identifiedLanguageName + " Not supported yet!";
                                         Log.i(TAG,msg);
                                         Toast.makeText(getApplicationContext(),msg, Toast.LENGTH_LONG).show();
                                         setSpinnerSelection(sourceLanguageSpinner,defaultSourceLanguage);
@@ -277,7 +277,7 @@ public class Translation extends AppCompatActivity  {
                                     }
 
 //                                    int langCode = getFirebaseLanguageCode(languageShortCode);
-//                                    translateText(langCode, , Translation.this.textToTranslate);
+//                                    translateText(langCode, , TextTranslationActivity.this.textToTranslate);
 
                                 } else {
                                     Toast.makeText(getApplicationContext(),"Language not Identified!", Toast.LENGTH_SHORT).show();

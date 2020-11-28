@@ -15,13 +15,13 @@
         android:roundIcon="@mipmap/icon_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Translation"></activity>
+        <activity android:name=".TextTranslationActivity"></activity>
 
         <meta-data
             android:name="com.google.firebase.ml.vision.DEPENDENCIES"
             android:value="ocr" />
 
-        <activity android:name=".MainActivity">
+        <activity android:name=".TextDetectionActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

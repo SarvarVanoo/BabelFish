@@ -23,7 +23,7 @@ import com.google.firebase.ml.vision.common.FirebaseVisionImage;
 import com.google.firebase.ml.vision.text.FirebaseVisionText;
 import com.google.firebase.ml.vision.text.FirebaseVisionTextRecognizer;
 
-public class MainActivity extends AppCompatActivity {
+public class TextDetectionActivity extends AppCompatActivity {
 
     Button cameraButton, doneButton, translateButton;
     ImageView image;
@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_text_detection);
 
         //Initializing all the elements
         cameraButton =findViewById(R.id.btn_camera);
@@ -145,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
                 public void onClick(View v)
                 {
                     String textToTranslate = extractedText.getText().toString();
-                    Intent intent = new Intent(MainActivity.this, Translation.class);
+                    Intent intent = new Intent(TextDetectionActivity.this, TextTranslationActivity.class);
                     intent.putExtra("textToTranslate",textToTranslate);
                     startActivity(intent);
                 }
