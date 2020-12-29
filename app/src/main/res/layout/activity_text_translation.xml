@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-
+    android:background="#3F51B5"
     tools:context=".TextTranslationActivity">
 
 <LinearLayout
@@ -22,10 +22,10 @@
     <EditText
         android:id="@+id/sourcetext"
         android:layout_height="wrap_content"
-        android:layout_width="285dp"
+        android:layout_width="270dp"
         android:padding="2dp"
         android:background="@drawable/textviewborder"
-        android:hint="Source Text"
+        android:backgroundTint="#FFFFFF"
         android:layout_gravity="center">
 
     </EditText>
@@ -35,6 +35,7 @@
         android:layout_height="25dp"
         android:foreground="@drawable/ic_copy"
         android:layout_marginLeft="5dp"
+        android:background="#FF8C00"
         >
     </Button>
 
@@ -44,6 +45,7 @@
         android:layout_height="25dp"
         android:foreground="@drawable/ic_speech"
         android:layout_marginLeft="5dp"
+        android:background="#FF8C00"
         >
     </Button>
     </LinearLayout>
@@ -58,16 +60,20 @@
 
     <TextView
         android:layout_height="wrap_content"
-        android:layout_width="70dp"
+        android:layout_width="50dp"
         android:text="From : "
-        android:textSize="17dp">
+        android:textSize="17dp"
+        android:textColor="#FFFFFF"
+        >
     </TextView>
 
     <Spinner
         android:id="@+id/sourcespinner"
-        android:layout_width="250dp"
+        android:layout_width="210dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
+        android:layout_marginRight="62dp"
+        android:background="@drawable/spinner_style"
         >
     </Spinner>
 
@@ -104,17 +110,21 @@
 
         <TextView
             android:layout_height="wrap_content"
-            android:layout_width="70dp"
+            android:layout_width="50dp"
             android:text="To : "
             android:textSize="17dp"
-           android:textAlignment="center">
+            android:textColor="#FFFFFF"
+            android:textAlignment="textEnd"
+            android:gravity="end">
         </TextView>
 
         <Spinner
             android:id="@+id/targetspinner"
-            android:layout_width="250dp"
+            android:layout_width="210dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
+            android:layout_marginRight="62dp"
+            android:background="@drawable/spinner_style"
            >
         </Spinner>
 
@@ -130,9 +140,10 @@
     <EditText
         android:id="@+id/translatedtext"
         android:layout_height="wrap_content"
-        android:layout_width="285dp"
+        android:layout_width="270dp"
         android:padding="2dp"
         android:background="@drawable/textviewborder"
+        android:backgroundTint="#FFFFFF"
         android:hint="Translated Text will be shown here"
         >
     </EditText>
@@ -143,6 +154,7 @@
             android:layout_height="25dp"
             android:foreground="@drawable/ic_copy"
             android:layout_marginLeft="5dp"
+            android:background="#FF8C00"
 
             >
         </Button>
@@ -153,6 +165,7 @@
             android:layout_height="25dp"
             android:foreground="@drawable/ic_speech"
             android:layout_marginLeft="5dp"
+            android:background="#FF8C00"
             >
         </Button>
 
@@ -171,6 +184,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Dismiss"
+            android:textColor="#FFFFFF"
+            android:background="#FF8C00"
             android:layout_gravity="center_horizontal">
 
         </Button>
@@ -180,6 +195,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Translate"
+            android:textColor="#FFFFFF"
+            android:background="#FF8C00"
+            android:layout_marginLeft="10dp"
             android:layout_gravity="center_horizontal">
         </Button>
 

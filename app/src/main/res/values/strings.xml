@@ -2,17 +2,13 @@
     <string name="app_name">Babel Fish</string>
     <string name="app_motto">Language is No more a Barrier!</string>
 
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
     <string-array name="supportedSourceLanguages">
+        <item>Select Language</item>
         <item>English</item>
-        <item>Hindi</item>
-        <item>Marathi</item>
-        <item>Gujarati</item>
-        <item>French</item>
-
-
-    </string-array>
-
-    <string-array name="supportedTargetLanguages">
         <item>Hindi</item>
         <item>Marathi</item>
         <item>Gujarati</item>
@@ -22,5 +18,29 @@
         <item>Spanish</item>
         <item>Arabic</item>
         <item>Chinese</item>
+        <item>Czech</item>
+        <item>Japanese</item>
+        <item>Polish</item>
+        <item>Ukrainian</item>
+        <item>Dutch</item>
+    </string-array>
+
+    <string-array name="supportedTargetLanguages">
+        <item>Select Language</item>
+        <item>English</item>
+        <item>Hindi</item>
+        <item>Marathi</item>
+        <item>Gujarati</item>
+        <item>French</item>
+        <item>German</item>
+        <item>Russian</item>
+        <item>Spanish</item>
+        <item>Arabic</item>
+        <item>Chinese</item>
+        <item>Czech</item>
+        <item>Japanese</item>
+        <item>Polish</item>
+        <item>Ukrainian</item>
+        <item>Dutch</item>
     </string-array>
 </resources>
