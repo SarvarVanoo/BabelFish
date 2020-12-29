@@ -66,7 +66,7 @@ public class TextTranslationActivity extends AppCompatActivity  {
             sourceText.setText(textToTranslate);
         }
         else{
-            sourceText.setText("Enter Text To Translate");
+            sourceText.setHint("Enter Text To Translate");
         }
 
 
@@ -188,7 +188,7 @@ public class TextTranslationActivity extends AppCompatActivity  {
             @Override
             public void onInit(int status) {
                 if (status == TextToSpeech.SUCCESS) {
-                    setLanguageAndSpeak(textToSpeech, sourceText, defaultLocale.getLanguage());
+                    //setLanguageAndSpeak(textToSpeech, sourceText, defaultLocale.getLanguage());
                 } else {
                     Log.e("error", "Failed to Initialize Text To Speech Object!");
                 }

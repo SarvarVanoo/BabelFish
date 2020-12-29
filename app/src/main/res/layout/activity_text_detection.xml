@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#3F51B5"
     tools:context=".TextDetectionActivity">
 
   <LinearLayout
@@ -26,6 +27,7 @@
       android:text="Click picture to extract text"
       android:textAlignment="center"
       android:textStyle="bold"
+      android:textColor="#FFFFFF"
       android:textSize="50dp"
       android:padding="15dp"
       />
@@ -53,6 +55,7 @@
       android:text="Extracted text will be shown here!"
       android:textAlignment="center"
       android:textStyle="bold"
+      android:backgroundTint="#FFFFFF"
       android:background="@drawable/textviewborder"
       />
 </LinearLayout>
@@ -70,7 +73,7 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:foreground="@drawable/ic_camera"
-        android:background="@android:color/white"
+        android:background="#FF8C00"
         android:layout_gravity="center"/>
 
     <Button
@@ -78,6 +81,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Done"
+        android:textColor="#FFFFFF"
+        android:background="#FF8C00"
         android:layout_gravity="center_horizontal"
         android:visibility="gone"/>
 
@@ -86,6 +91,9 @@
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:text="Translate"
+          android:layout_marginLeft="10dp"
+          android:textColor="#FFFFFF"
+          android:background="#FF8C00"
           android:layout_gravity="center_horizontal"
           android:visibility="gone"/>
 
